@@ -1,62 +1,49 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 import logo from './logo.svg';
-import {useState} from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import Axios from 'axios';
 import './App.css';
+import  LoginComponent from'./LoginComponent'
+import  Navbar from'./Navbar'
+import Home from './Home'
+import CaseList from './CaseList'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { UserContext,  } from './UserContext';
+
 
 function App() {
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  
-  const [loginStatus, setLoginStatus]= useState("");
+  const [user, setUser] = useState(null);
 
-  const login = () => {
-    try {
-        Axios.post("http://localhost:3000/user/login", { 
-        email: email,
-        password: password,
-      }).then((response) => {
+  // useMemo makes sure the values only change when the dependencies have. This stops recalulating the values every render.
+  const providerValue = useMemo(() => ({user, setUser}), [user, setUser]);
 
-        if(response.data.message){
-          setLoginStatus(response.data.message)
-        }else{
-          setLoginStatus(response.data[0].email)
-        }
-    });
-    } catch (error) {
-      console.log(error)
-    } 
-  };
-
-
+  useEffect(() => {
+    if (user != null){
+      
+    }
+}, [])
 
   
-
   return (
-    <div className="App">
-      <div className="wrap">
-        <div className="container">
-          <form className="login-form">
-            <div className="form-header">
-              <h3>Handshake Administrator Login</h3>
-            </div>
-            <div className="form-group">
-              <input type="text" className="form-input" onChange={(e) => {setEmail(e.target.value)}} placeholder="email@example.com"></input>
-            </div>
-            <div className="form-group">
-              <input type="password" className="form-input" onChange={(e) => {setPassword(e.target.value)}} placeholder="password"></input>
-            </div>
-            <div className="form-group">
-              <button className="form-button" type='button' onClick={login} >Login</button>
-            </div>
-            <div className="form-footer">
-              Handshake 2022.
-            </div>
-          </form>
+    <Router>
+      <UserContext.Provider value={providerValue}>
+      <div className="App">
+      <Navbar/>
+        <div className="content">
+          <Switch>
+            <Route exact path="/">
+              <Home/>
+            </Route>
+            <Route exact path="/login">
+              <LoginComponent/>
+            </Route>
+          </Switch>
         </div>
       </div>
-      <h1>{loginStatus}</h1>
-    </div>
+      </UserContext.Provider>
+    </Router>
   );
 }
 
