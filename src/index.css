@@ -1,6 +1,7 @@
 * {
   margin: 0;
   color: #333;
+  font-family: 'Segoe UI', sans-serif;
 }
 .navbar {
   padding: 20px;
@@ -10,9 +11,7 @@
   margin: 0 auto;
   border-bottom: 1px solid #f2f2f2;
 }
-.navbar h1 {
-  color: #f1356d;
-}
+
 .navbar .links {
   margin-left: auto;
 }
@@ -22,7 +21,7 @@
   padding: 6px;
 }
 .navbar a:hover {
-  color: #f1356d;
+  color: #003066;;
 }
 .content {
   max-width: 600px;
@@ -37,6 +36,7 @@
   padding: 10px;
   width: 100%;
   text-transform: uppercase;
+  border-radius: 25px;
 }
 
 /* blog previews / list */
@@ -50,7 +50,7 @@
 }
 .blog-preview h2 {
   font-size: 20px;
-  color: #f1356d;
+  color: #000;
   margin-bottom: 8px;
 }
 

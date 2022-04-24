@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { UserContext } from './UserContext';
 import { useState, useContext } from 'react'
+import logo from './logo.png';
 
 const Navbar = () => {
 
@@ -10,7 +11,7 @@ const Navbar = () => {
 
     return (
       <nav className="navbar">
-        <h1>Handshake</h1>
+        <h1><img className="logo" src={logo}></img></h1>
         <div className="links">
           <Link to="/">Home</Link>
           <Link to="/login" className="round-button">Login</Link>

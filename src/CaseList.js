@@ -52,7 +52,7 @@ const CaseList = ({ cases }) => {
           <p>Phone: { userCase.phone }</p>
           <p>Email: { userCase.email }</p>
           {userCase.status == "confirmed" ? (
-            <button  className='round-button'>Case Has been Confirmed</button>
+            <button style={{backgroundColor: '#003066'}}  className='round-button'>Case Has been Confirmed</button>
           ) : (
             <button onClick={() => {confirmCase(userCase)}} className='round-button'>Confirm Case</button>
           )}
